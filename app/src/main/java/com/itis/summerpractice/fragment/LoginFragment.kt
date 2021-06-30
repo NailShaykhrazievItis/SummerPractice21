@@ -1,15 +1,18 @@
-package com.itis.summerpractice
+package com.itis.summerpractice.fragment
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
+import com.itis.summerpractice.R
+import com.itis.summerpractice.hideKeyboard
 
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val users = hashMapOf(
         "admin@admin.ru" to "12345",
@@ -22,11 +25,11 @@ class LoginActivity : AppCompatActivity() {
     private var etPassword: EditText? = null
     private var tiPassword: TextInputLayout? = null
     private var btnLogin: Button? = null
+    private var btnSettings: Button? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        findView()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        findView(view)
         initListeners()
     }
 
@@ -55,17 +58,21 @@ class LoginActivity : AppCompatActivity() {
             val message = when {
                 passFromBase == null -> getString(R.string.user_not_found)
                 password == passFromBase -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("EXTRA_EMAIL", email)
-                    intent.putExtra("EXTRA_PASS", password)
-                    startActivity(intent)
+                    findNavController().navigate(
+                        R.id.action_loginFragment_to_mainFragment,
+                        MainFragment.createBundle(email, password)
+                    )
                     "YOU are auth"
                 }
                 else -> getString(R.string.wrong_pass)
             }
-            etEmail?.hideKeyboard(this)
+            etEmail?.hideKeyboard(requireContext())
 
             showMessage(message)
+        }
+
+        btnSettings?.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_settingsFragment)
         }
 
         etEmail?.addTextChangedListener {
@@ -80,18 +87,21 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showMessage(message: String) {
-        Snackbar.make(
-            findViewById(android.R.id.content),
-            message,
-            Snackbar.LENGTH_LONG
-        ).show()
+       activity?.findViewById<View>(android.R.id.content)?.also {
+            Snackbar.make(
+                it,
+                message,
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
     }
 
-    private fun findView() {
-        etEmail = findViewById(R.id.et_email)
-        tiEmail = findViewById(R.id.ti_email)
-        etPassword = findViewById(R.id.et_password)
-        tiPassword = findViewById(R.id.ti_password)
-        btnLogin = findViewById(R.id.btn_login)
+    private fun findView(view: View) {
+        etEmail = view.findViewById(R.id.et_email)
+        tiEmail = view.findViewById(R.id.ti_email)
+        etPassword = view.findViewById(R.id.et_password)
+        tiPassword = view.findViewById(R.id.ti_password)
+        btnLogin = view.findViewById(R.id.btn_login)
+        btnSettings = view.findViewById(R.id.btn_settings)
     }
 }
