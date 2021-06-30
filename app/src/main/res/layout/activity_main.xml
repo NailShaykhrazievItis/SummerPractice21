@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
     android:paddingHorizontal="16dp"
     android:paddingTop="24dp"
     android:paddingBottom="16dp"
@@ -12,22 +11,20 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-condensed-medium"
-        android:text="First Name First Name First Name "
+        android:text="@string/password"
         android:textAllCaps="true"
         android:textColor="@color/purple_700"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_avatar"
-        tools:text="sdsamdlsa sa;damslm"
-        tools:visibility="invisible" />
+        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
 
     <TextView
         android:id="@+id/tv_email"
@@ -39,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_avatar"
-        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_pass" />
 
     <Button
         android:id="@+id/button"

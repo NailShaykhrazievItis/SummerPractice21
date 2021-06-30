@@ -3,4 +3,9 @@
     <string name="app_name">Летняя практика</string>
 
     <string name="password">Пароль</string>
+    <string name="login">Вход</string>
+
+    <string name="empty_field">Пустое поле</string>
+    <string name="wrong_pass">Не правильный пароль</string>
+    <string name="user_not_found">Пользователь не найден</string>
 </resources>
