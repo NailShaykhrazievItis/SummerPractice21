@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.itis.summerpractice.R
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -34,8 +36,33 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         btnSettings?.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
+//            findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
+            showDialog()
         }
+    }
+
+    private fun showDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Title")
+            .setMessage("Message")
+            .setView(R.layout.fragment_login)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setNeutralButton("Neutral") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                activity?.findViewById<View>(android.R.id.content)?.also {
+                    Snackbar.make(
+                        it,
+                        "Cancel",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+                dialog.dismiss()
+            }
+            .show()
     }
 
     companion object {

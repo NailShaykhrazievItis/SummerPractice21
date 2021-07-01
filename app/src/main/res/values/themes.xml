@@ -13,4 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerCut" parent="">
+        <item name="cornerSize">8dp</item>
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSizePercent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
 </resources>

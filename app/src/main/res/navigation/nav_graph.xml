@@ -25,14 +25,23 @@
         android:id="@+id/mainFragment"
         android:name="com.itis.summerpractice.fragment.MainFragment"
         android:label="MainFragment"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        tools:layout="@layout/fragment_settings"
         android:name="com.itis.summerpractice.fragment.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_cityFragment"
+            app:destination="@id/cityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.itis.summerpractice.fragment.CityFragment"
+        android:label="CityFragment"
+        tools:layout="@layout/fragment_city" />
 </navigation>
